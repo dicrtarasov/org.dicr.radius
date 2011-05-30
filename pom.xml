@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <parent>
+        <artifactId>dicr-project</artifactId>
+        <groupId>org.dicr</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../org.dicr.project</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.dicr</groupId>
+    <artifactId>dicr-radius</artifactId>
+    <name>JRadius</name>
+    <version>1.0-SNAPSHOT</version>
+    <description>Java Radius AAA implementation</description>
+    <url>http://dicr.org/projects/jradius</url>
+    <dependencies>
+        <dependency>
+            <groupId>org.dicr</groupId>
+            <artifactId>dicr-sys</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.dicr</groupId>
+            <artifactId>dicr-util</artifactId>
+            <version>2.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.gnu</groupId>
+            <artifactId>gnu-crypto</artifactId>
+            <version>2.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+</project>

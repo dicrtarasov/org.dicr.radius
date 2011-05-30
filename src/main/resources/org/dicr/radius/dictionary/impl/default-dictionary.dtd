@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary indentification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/dictionary.dtd.dtd
+
+--><!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE dictionary SYSTEM "default-dictionary.dtd">
+
+    <dictionary>
+    ...
+    </dictionary>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT dictionary (attribute|vendor)*>
+<!ATTLIST dictionary
+    name CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT vendor EMPTY>
+<!ATTLIST vendor
+    name CDATA #IMPLIED
+    code CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT attribute (value)*>
+<!ATTLIST attribute
+    encoding CDATA #IMPLIED
+    type CDATA #IMPLIED
+    name CDATA #IMPLIED
+    code CDATA #IMPLIED
+    vendor CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT value EMPTY>
+<!ATTLIST value
+    name CDATA #IMPLIED
+    code CDATA #IMPLIED
+  >

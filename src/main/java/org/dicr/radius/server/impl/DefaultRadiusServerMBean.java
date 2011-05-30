@@ -1,0 +1,63 @@
+/**
+ * DefaultRadiusServerMBean.java 11.11.2006
+ */
+package org.dicr.radius.server.impl;
+
+import org.dicr.radius.channel.*;
+import org.dicr.radius.handler.*;
+import org.dicr.radius.server.*;
+
+/**
+ * @author <A href='http://dicr.org'>Igor A Tarasov</A>
+ * @version XXXXXX
+ */
+public interface DefaultRadiusServerMBean extends RadiusServer {
+
+	/**
+     * @see org.dicr.radius.server.RadiusServer#addChannel(org.dicr.radius.channel.ServerChannel)
+     */
+	public void addChannel(ServerChannel channel);
+
+	/**
+     * Remove channel from server
+     * 
+     * @param channel channel to remove
+     */
+	public void removeChannel(ServerChannel channel);
+
+	/**
+     * @see org.dicr.radius.server.RadiusServer#setRequestsQueue(org.dicr.radius.server.RequestsQueue)
+     */
+	public void setRequestsQueue(RequestsQueue queue);
+
+	/**
+     * @see org.dicr.radius.server.RadiusServer#getRequestsQueue()
+     */
+	public RequestsQueue getRequestsQueue();
+
+	/**
+     * @see org.dicr.radius.server.RadiusServer#setRequestHandler(org.dicr.radius.handler.RequestHandler)
+     */
+	public void setRequestHandler(RequestHandler handler);
+
+	/**
+     * @see org.dicr.radius.server.RadiusServer#getRequestHandler()
+     */
+	public RequestHandler getRequestHandler();
+
+	/**
+     * @see org.dicr.radius.server.RadiusServer#isRunning()
+     */
+	public boolean isRunning();
+
+	/**
+     * @see org.dicr.radius.server.RadiusServer#startServer()
+     */
+	public void startServer();
+
+	/**
+     * @see org.dicr.radius.server.RadiusServer#stopServer()
+     */
+	public void stopServer();
+
+}

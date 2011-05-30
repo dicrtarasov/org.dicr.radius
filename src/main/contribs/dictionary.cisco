@@ -1,0 +1,7 @@
+#
+#	Cisco vendor attributes
+#
+VENDOR		Cisco	9	Cisco
+
+ATTRIBUTE	CiscoAVPair		1	string		Cisco
+

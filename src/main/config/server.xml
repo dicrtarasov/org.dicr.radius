@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!--
+		##########################################################################
+		# JMXServer Configuration                                                #
+		##########################################################################
+	-->
+	<bean name="containerServer" class="org.dicr.spring.container.Main">
+		<property name="connectors">
+			<map>
+				<entry key="org.dicr:service=connector,type=jmxmp,port=8770" value="service:jmx:jmxmp://0.0.0.0:8770"/>
+			</map>
+		</property>
+		<property name="services">
+			<map>
+				<entry key="org.dicr:service=auth,type=radius,name=dicr" value-ref="radiusServer"/>
+			</map>
+		</property>
+	</bean>
+
+	<!--
+		##########################################################################
+		# RadiusServer Configuration                                             #
+		##########################################################################
+	-->
+	<bean id="authModule" class="org.dicr.radius.handler.impl.FileAuthModule">
+		<property name="papFile">
+			<bean class="org.dicr.sys.linux.PapFile" factory-method="getInstance">
+				<!-- constructor-arg value="/etc/org.dicr.radius/users.dat"/-->
+				<constructor-arg value="/etc/ppp/chap-secrets"/>
+				<property name="cryptedPasswords" value="false"/>
+			</bean>
+		</property>
+		<property name="shadowPapEnabled" value="true"/>
+	</bean>
+
+	<!--
+		##########################################################################
+		# RadiusServer                                                          #
+		##########################################################################
+	-->
+	<bean id="radiusServer"	class="org.dicr.radius.server.impl.DefaultRadiusServer">
+
+		<!-- Channels -->
+		<property name="channels">
+			<set>
+				<bean class="org.dicr.radius.channel.impl.NIOServerChannel">
+					<property name="listenAddresses">
+						<set>
+							<bean class="java.net.InetSocketAddress">
+								<constructor-arg value="0.0.0.0" />
+								<constructor-arg value="1812" />
+							</bean>
+							<bean class="java.net.InetSocketAddress">
+								<constructor-arg value="0.0.0.0" />
+								<constructor-arg value="1813" />
+							</bean>
+						</set>
+					</property>
+					<property name="sharedSecrets">
+						<map>
+							<entry key="127.0.0.1" value="radlocal" />
+						</map>
+					</property>
+				</bean>
+			</set>
+		</property>
+
+		<!-- Request queue -->
+		<property name="requestsQueue">
+			<bean
+				class="org.dicr.radius.server.impl.TrackingRequestsQueue">
+				<property name="sessionTimeout" value="20000" />
+			</bean>
+		</property>
+
+		<!-- Request Handler -->
+		<property name="requestHandler">
+			<bean id="standardRequestHandler" class="org.dicr.radius.handler.impl.StandardRequestHandler">
+				<property name="papAuthModule" ref="authModule"/>
+				<property name="chapAuthModule" ref="authModule"/>
+				<property name="MSChapAuthModule" ref="authModule"/>
+				<property name="MSChap2AuthModule" ref="authModule"/>
+			</bean>
+		</property>
+	</bean>
+</beans>
+
