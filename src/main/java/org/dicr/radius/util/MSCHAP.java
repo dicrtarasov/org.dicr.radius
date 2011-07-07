@@ -129,7 +129,6 @@ public class MSCHAP {
      * @param key byte[7] encryption key
      * @return byte[8] encrypted value
      */
-	@SuppressWarnings("unchecked")
 	private static byte[] desEncrypt(byte[] clear, byte[] key) {
 		if (clear == null || clear.length != 8) throw new IllegalArgumentException("clear");
 		if (key == null || key.length != 7) throw new IllegalArgumentException("key");
@@ -145,7 +144,7 @@ public class MSCHAP {
 			}
 			parited[7] = (byte) (rest | 1);
 			IBlockCipher cipher = CipherFactory.getInstance("DES");
-			Map attributes = new HashMap();
+			Map<Object, Object> attributes = new HashMap<Object, Object>();
 			attributes.put(IBlockCipher.CIPHER_BLOCK_SIZE, Integer.valueOf(8));
 			attributes.put(IBlockCipher.KEY_MATERIAL, parited);
 			cipher.init(attributes);

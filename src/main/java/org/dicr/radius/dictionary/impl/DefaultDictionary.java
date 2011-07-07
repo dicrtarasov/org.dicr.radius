@@ -57,7 +57,8 @@ public final class DefaultDictionary implements RadiusDictionary {
 	 * 
 	 * @see org.dicr.radius.dictionary.RadiusDictionary#init(java.net.URL)
 	 */
-	public synchronized void init(final URL resourceURL) {
+	@Override
+    public synchronized void init(final URL resourceURL) {
 		this.url = resourceURL;
 		this.vendorsRef = null;
 		this.attributesRef = null;
@@ -93,7 +94,8 @@ public final class DefaultDictionary implements RadiusDictionary {
 	/**
 	 * @see org.dicr.radius.dictionary.RadiusDictionary#getVendorName(int)
 	 */
-	public synchronized String getVendorName(final int code) {
+	@Override
+    public synchronized String getVendorName(final int code) {
 		if (this.vendorsRef == null || this.vendorsRef.get() == null) this.loadData();
 		Map<Integer, String> vendorsMap = null;
 		if (this.vendorsRef != null) vendorsMap = this.vendorsRef.get();
@@ -104,7 +106,8 @@ public final class DefaultDictionary implements RadiusDictionary {
 	/**
 	 * @see org.dicr.radius.dictionary.RadiusDictionary#getAttributeDescriptor(org.dicr.radius.dictionary.AttributeType)
 	 */
-	public final synchronized AttributeDescriptor getAttributeDescriptor(final AttributeType type) {
+	@Override
+    public final synchronized AttributeDescriptor getAttributeDescriptor(final AttributeType type) {
 		if (type == null) throw new IllegalArgumentException("null code");
 		if (this.attributesRef == null || this.attributesRef.get() == null) this.loadData();
 		Map<AttributeType, AttributeDescriptor> attributesMap = null;

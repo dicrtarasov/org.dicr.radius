@@ -58,7 +58,8 @@ public class NIOClientRequest implements ClientRequest {
 	 * @return server _serverChannel, which receive this request
 	 * @see org.dicr.radius.channel.ClientRequest#getServerChannel()
 	 */
-	public NIOServerChannel getServerChannel() {
+	@Override
+    public NIOServerChannel getServerChannel() {
 		return this._serverChannel;
 	}
 
@@ -68,7 +69,8 @@ public class NIOClientRequest implements ClientRequest {
 	 * @return client address
 	 * @see org.dicr.radius.channel.ClientRequest#getClientAddress()
 	 */
-	public InetSocketAddress getClientAddress() {
+	@Override
+    public InetSocketAddress getClientAddress() {
 		return this._clientAddress;
 	}
 
@@ -78,7 +80,8 @@ public class NIOClientRequest implements ClientRequest {
 	 * @return request _requestPacket
 	 * @see org.dicr.radius.channel.ClientRequest#getRequestPacket()
 	 */
-	public RequestPacket getRequestPacket() {
+	@Override
+    public RequestPacket getRequestPacket() {
 		return this._requestPacket;
 	}
 
@@ -88,7 +91,8 @@ public class NIOClientRequest implements ClientRequest {
 	 * @return time, when request was created
 	 * @see org.dicr.radius.channel.ClientRequest#getTimeStamp()
 	 */
-	public long getTimeStamp() {
+	@Override
+    public long getTimeStamp() {
 		return this.timestamp;
 	}
 
@@ -113,7 +117,8 @@ public class NIOClientRequest implements ClientRequest {
 	/**
 	 * @see org.dicr.radius.channel.ClientRequest#sendResponse(org.dicr.radius.packet.ResponsePacket)
 	 */
-	public void sendResponse(ResponsePacket responsePacket) throws ChannelException {
+	@Override
+    public void sendResponse(ResponsePacket responsePacket) throws ChannelException {
 		if (this._requestPacket.getId() != responsePacket.getId()) throw new IllegalStateException(
 		        "response id does not match request id");
 		this._serverChannel.sendResponse(responsePacket, this);

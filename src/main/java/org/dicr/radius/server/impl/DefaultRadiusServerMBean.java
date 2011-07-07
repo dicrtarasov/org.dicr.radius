@@ -16,7 +16,8 @@ public interface DefaultRadiusServerMBean extends RadiusServer {
 	/**
      * @see org.dicr.radius.server.RadiusServer#addChannel(org.dicr.radius.channel.ServerChannel)
      */
-	public void addChannel(ServerChannel channel);
+	@Override
+    public void addChannel(ServerChannel channel);
 
 	/**
      * Remove channel from server
@@ -28,36 +29,43 @@ public interface DefaultRadiusServerMBean extends RadiusServer {
 	/**
      * @see org.dicr.radius.server.RadiusServer#setRequestsQueue(org.dicr.radius.server.RequestsQueue)
      */
-	public void setRequestsQueue(RequestsQueue queue);
+	@Override
+    public void setRequestsQueue(RequestsQueue queue);
 
 	/**
      * @see org.dicr.radius.server.RadiusServer#getRequestsQueue()
      */
-	public RequestsQueue getRequestsQueue();
+	@Override
+    public RequestsQueue getRequestsQueue();
 
 	/**
      * @see org.dicr.radius.server.RadiusServer#setRequestHandler(org.dicr.radius.handler.RequestHandler)
      */
-	public void setRequestHandler(RequestHandler handler);
+	@Override
+    public void setRequestHandler(RequestHandler handler);
 
 	/**
      * @see org.dicr.radius.server.RadiusServer#getRequestHandler()
      */
-	public RequestHandler getRequestHandler();
+	@Override
+    public RequestHandler getRequestHandler();
 
 	/**
      * @see org.dicr.radius.server.RadiusServer#isRunning()
      */
-	public boolean isRunning();
+	@Override
+    public boolean isRunning();
 
 	/**
      * @see org.dicr.radius.server.RadiusServer#startServer()
      */
-	public void startServer();
+	@Override
+    public void startServer();
 
 	/**
      * @see org.dicr.radius.server.RadiusServer#stopServer()
      */
-	public void stopServer();
+	@Override
+    public void stopServer();
 
 }

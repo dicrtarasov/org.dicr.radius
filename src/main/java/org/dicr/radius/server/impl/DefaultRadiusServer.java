@@ -52,7 +52,8 @@ public class DefaultRadiusServer implements MBeanRegistration, DefaultRadiusServ
 	/**
 	 * @see org.dicr.radius.server.impl.DefaultRadiusServerMBean#addChannel(org.dicr.radius.channel.ServerChannel)
 	 */
-	public void addChannel(final ServerChannel channel) {
+	@Override
+    public void addChannel(final ServerChannel channel) {
 		if (channel == null) throw new IllegalArgumentException("null channel");
 		synchronized (this) {
 			if (!this.channels.contains(channel)) {
@@ -66,7 +67,8 @@ public class DefaultRadiusServer implements MBeanRegistration, DefaultRadiusServ
 	/**
 	 * @see org.dicr.radius.server.RadiusServer#setChannels(Set)
 	 */
-	public void setChannels(final Set<ServerChannel> achannels) {
+	@Override
+    public void setChannels(final Set<ServerChannel> achannels) {
 		if (achannels == null) throw new IllegalArgumentException("null channels");
 		synchronized (this) {
 			this.channels.clear();
@@ -85,7 +87,8 @@ public class DefaultRadiusServer implements MBeanRegistration, DefaultRadiusServ
 	/**
 	 * @see org.dicr.radius.server.impl.DefaultRadiusServerMBean#removeChannel(org.dicr.radius.channel.ServerChannel)
 	 */
-	public void removeChannel(final ServerChannel channel) {
+	@Override
+    public void removeChannel(final ServerChannel channel) {
 		if (channel == null) throw new IllegalArgumentException("null channel");
 		synchronized (this) {
 			channel.removeListener(this.channelsListener);
@@ -97,7 +100,8 @@ public class DefaultRadiusServer implements MBeanRegistration, DefaultRadiusServ
 	/**
 	 * @see org.dicr.radius.server.impl.DefaultRadiusServerMBean#setRequestsQueue(org.dicr.radius.server.RequestsQueue)
 	 */
-	public final void setRequestsQueue(final RequestsQueue queue) {
+	@Override
+    public final void setRequestsQueue(final RequestsQueue queue) {
 		if (queue == null) throw new IllegalArgumentException("null queue");
 		synchronized (this) {
 			this.requestsQueue = queue;
@@ -108,7 +112,8 @@ public class DefaultRadiusServer implements MBeanRegistration, DefaultRadiusServ
 	/**
 	 * @see org.dicr.radius.server.impl.DefaultRadiusServerMBean#getRequestsQueue()
 	 */
-	public final RequestsQueue getRequestsQueue() {
+	@Override
+    public final RequestsQueue getRequestsQueue() {
 		if (this.requestsQueue == null) this.requestsQueue = new TrackingRequestsQueue();
 		synchronized (this) {
 			return this.requestsQueue;
@@ -118,7 +123,8 @@ public class DefaultRadiusServer implements MBeanRegistration, DefaultRadiusServ
 	/**
 	 * @see org.dicr.radius.server.impl.DefaultRadiusServerMBean#setRequestHandler(org.dicr.radius.handler.RequestHandler)
 	 */
-	public final void setRequestHandler(final RequestHandler handler) {
+	@Override
+    public final void setRequestHandler(final RequestHandler handler) {
 		if (handler == null) throw new IllegalArgumentException("null handler");
 		synchronized (this) {
 			this.requestHandler = handler;
@@ -129,7 +135,8 @@ public class DefaultRadiusServer implements MBeanRegistration, DefaultRadiusServ
 	/**
 	 * @see org.dicr.radius.server.impl.DefaultRadiusServerMBean#getRequestHandler()
 	 */
-	public final RequestHandler getRequestHandler() {
+	@Override
+    public final RequestHandler getRequestHandler() {
 		synchronized (this) {
 			return this.requestHandler;
 		}
@@ -138,7 +145,8 @@ public class DefaultRadiusServer implements MBeanRegistration, DefaultRadiusServ
 	/**
 	 * @see org.dicr.radius.server.impl.DefaultRadiusServerMBean#isRunning()
 	 */
-	public final boolean isRunning() {
+	@Override
+    public final boolean isRunning() {
 		synchronized (this) {
 			return this.running && this.handlerThread != null && this.handlerThread.isAlive();
 		}
@@ -147,7 +155,8 @@ public class DefaultRadiusServer implements MBeanRegistration, DefaultRadiusServ
 	/**
 	 * @see org.dicr.radius.server.impl.DefaultRadiusServerMBean#startServer()
 	 */
-	public final void startServer() {
+	@Override
+    public final void startServer() {
 		synchronized (this) {
 			if (this.isRunning()) DefaultRadiusServer.log.debug("radius server already running");
 			else {
@@ -168,7 +177,8 @@ public class DefaultRadiusServer implements MBeanRegistration, DefaultRadiusServ
 	/**
 	 * @see org.dicr.radius.server.impl.DefaultRadiusServerMBean#stopServer()
 	 */
-	public final void stopServer() {
+	@Override
+    public final void stopServer() {
 		synchronized (this) {
 			if (!this.isRunning()) DefaultRadiusServer.log.debug("radius server is already stopped");
 			else {
@@ -193,7 +203,8 @@ public class DefaultRadiusServer implements MBeanRegistration, DefaultRadiusServ
 		/**
 		 * @see org.dicr.radius.channel.ServerChannelListener#requestReceived(org.dicr.radius.channel.ClientRequest)
 		 */
-		public void requestReceived(final ClientRequest request) {
+		@Override
+        public void requestReceived(final ClientRequest request) {
 			if (request == null) throw new IllegalArgumentException("null request");
 			DefaultRadiusServer.this.getRequestsQueue().putRequest(request);
 		}
@@ -262,28 +273,32 @@ public class DefaultRadiusServer implements MBeanRegistration, DefaultRadiusServ
 	/**
 	 * @see javax.management.MBeanRegistration#preRegister(javax.management.MBeanServer, javax.management.ObjectName)
 	 */
-	public final ObjectName preRegister(final MBeanServer server, final ObjectName name) throws Exception {
+	@Override
+    public final ObjectName preRegister(final MBeanServer server, final ObjectName name) throws Exception {
 		return name != null ? name : ObjectName.getInstance(DefaultRadiusServer.DEFAULT_MBEAN_NAME);
 	}
 
 	/**
 	 * @see javax.management.MBeanRegistration#postRegister(java.lang.Boolean)
 	 */
-	public final void postRegister(final Boolean registrationDone) {
+	@Override
+    public final void postRegister(final Boolean registrationDone) {
 		if (registrationDone.booleanValue()) this.startServer();
 	}
 
 	/**
 	 * @see javax.management.MBeanRegistration#preDeregister()
 	 */
-	public final void preDeregister() throws Exception {
+	@Override
+    public final void preDeregister() throws Exception {
 		this.stopServer();
 	}
 
 	/**
 	 * @see javax.management.MBeanRegistration#postDeregister()
 	 */
-	public final void postDeregister() {
+	@Override
+    public final void postDeregister() {
 	// nop
 	}
 }

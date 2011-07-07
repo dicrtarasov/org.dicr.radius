@@ -288,7 +288,8 @@ public class StandardRequestHandler implements RequestHandler {
 	 * @param request request packet
 	 * @return response packet or null if can't process request
 	 */
-	public ResponsePacket handleRequest(final RequestPacket request) {
+	@Override
+    public ResponsePacket handleRequest(final RequestPacket request) {
 		if (request == null) throw new IllegalArgumentException("null request");
 		ResponsePacket response = null;
 		if (request instanceof AccessRequest) response = this.handleAccessRequest((AccessRequest) request);

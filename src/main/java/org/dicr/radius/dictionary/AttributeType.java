@@ -88,7 +88,8 @@ public final class AttributeType implements Serializable, Cloneable, Comparable<
      * @return &lt1 if less; 0 if equals; &gt;1 if greater
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
-	public final int compareTo(AttributeType type) {
+	@Override
+    public final int compareTo(AttributeType type) {
 		if (type == null) throw new NullPointerException("can't compare to null object");
 		if (type == this) return 0;
 		if (this.vendorCode < type.vendorCode) return -1;

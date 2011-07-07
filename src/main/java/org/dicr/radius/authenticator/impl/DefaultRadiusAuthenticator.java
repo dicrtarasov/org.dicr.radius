@@ -169,7 +169,8 @@ public class DefaultRadiusAuthenticator implements RadiusAuthenticator {
 	 * @see org.dicr.radius.authenticator.RadiusAuthenticator#authenticate(java.lang.String, java.lang.String,
 	 *      org.dicr.radius.channel.ClientChannel)
 	 */
-	public synchronized AttributesList authenticate(final String username, final String password, final ClientChannel clientChannel) throws AuthenticationException, ChannelException, CodecException {
+	@Override
+    public synchronized AttributesList authenticate(final String username, final String password, final ClientChannel clientChannel) throws AuthenticationException, ChannelException, CodecException {
 		if (username == null) throw new IllegalArgumentException("null username");
 		if (password == null) throw new IllegalArgumentException("null password");
 		if (clientChannel == null) throw new IllegalArgumentException("null channel");

@@ -41,14 +41,16 @@ public class RFCCodec implements RadiusCodec {
 	/**
      * @see org.dicr.radius.codec.RadiusCodec#getPacketMaxLength()
      */
-	public int getPacketMaxLength() {
+	@Override
+    public int getPacketMaxLength() {
 		return RFCCodec.PACKET_MAX_LENGTH;
 	}
 
 	/**
      * @see org.dicr.radius.codec.RadiusCodec#getPacketHeaderLength()
      */
-	public int getPacketHeaderLength() {
+	@Override
+    public int getPacketHeaderLength() {
 		return RFCCodec.PACKET_HEADER_LENGTH;
 	}
 
@@ -333,7 +335,8 @@ public class RFCCodec implements RadiusCodec {
      * @return encoded data of packet
      * @see org.dicr.radius.codec.RadiusCodec#encodeRequest(org.dicr.radius.packet.RequestPacket, java.lang.String)
      */
-	public final byte[] encodeRequest(RequestPacket packet, String secret) throws CodecException {
+	@Override
+    public final byte[] encodeRequest(RequestPacket packet, String secret) throws CodecException {
 		if (packet == null) throw new IllegalArgumentException("null packet");
 		if (secret == null || secret.isEmpty()) throw new IllegalArgumentException("empty secret");
 		return RFCCodec.encodePacket(packet, null, secret);
@@ -353,7 +356,8 @@ public class RFCCodec implements RadiusCodec {
      * @see org.dicr.radius.codec.RadiusCodec#encodeResponse(org.dicr.radius.packet.ResponsePacket,
      *      org.dicr.radius.packet.RequestPacket, java.lang.String)
      */
-	public final byte[] encodeResponse(ResponsePacket packet, RequestPacket request, String secret) throws CodecException {
+	@Override
+    public final byte[] encodeResponse(ResponsePacket packet, RequestPacket request, String secret) throws CodecException {
 		if (packet == null) throw new IllegalArgumentException("null response packet");
 		if (request == null) throw new IllegalArgumentException("null request packet");
 		if (secret == null || secret.isEmpty()) throw new IllegalArgumentException("empty secret");
@@ -372,7 +376,8 @@ public class RFCCodec implements RadiusCodec {
      * @return decoded request packet
      * @see org.dicr.radius.codec.RadiusCodec#decodeRequest(byte[], java.lang.String)
      */
-	public RequestPacket decodeRequest(byte[] data, String secret) throws CodecException {
+	@Override
+    public RequestPacket decodeRequest(byte[] data, String secret) throws CodecException {
 		if (data == null) throw new IllegalArgumentException("null data");
 		if (secret == null || secret.isEmpty()) throw new IllegalArgumentException("empty secret");
 		return (RequestPacket) RFCCodec.decodePacket(data, null, secret);
@@ -394,7 +399,8 @@ public class RFCCodec implements RadiusCodec {
      * @see org.dicr.radius.codec.RadiusCodec#decodeResponse(byte[], org.dicr.radius.packet.RequestPacket,
      *      java.lang.String)
      */
-	public ResponsePacket decodeResponse(byte[] data, RequestPacket request, String secret) throws CodecException {
+	@Override
+    public ResponsePacket decodeResponse(byte[] data, RequestPacket request, String secret) throws CodecException {
 		if (data == null) throw new IllegalArgumentException("null data");
 		if (request == null) throw new IllegalArgumentException("null request");
 		if (secret == null || secret.isEmpty()) throw new IllegalArgumentException("null secret");

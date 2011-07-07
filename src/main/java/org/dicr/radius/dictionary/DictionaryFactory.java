@@ -94,17 +94,20 @@ public class DictionaryFactory {
 	 */
 	protected static class FailSafeDictionary implements RadiusDictionary {
 		/** @see org.dicr.radius.dictionary.RadiusDictionary#init(java.net.URL) */
-		public void init(final URL aurl) {
+		@Override
+        public void init(final URL aurl) {
 		// empty
 		}
 
 		/** @see org.dicr.radius.dictionary.RadiusDictionary#getAttributeDescriptor(org.dicr.radius.dictionary.AttributeType) */
-		public AttributeDescriptor getAttributeDescriptor(final AttributeType atype) {
+		@Override
+        public AttributeDescriptor getAttributeDescriptor(final AttributeType atype) {
 			return null;
 		}
 
 		/** @see org.dicr.radius.dictionary.RadiusDictionary#getVendorName(int) */
-		public String getVendorName(final int acode) {
+		@Override
+        public String getVendorName(final int acode) {
 			return null;
 		}
 	}

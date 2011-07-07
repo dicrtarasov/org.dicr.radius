@@ -165,7 +165,8 @@ public class NIOServerChannel implements ServerChannel {
 	 * 
 	 * @see org.dicr.radius.channel.ServerChannel#addListener(org.dicr.radius.channel.ServerChannelListener)
 	 */
-	public void addListener(final ServerChannelListener listener) {
+	@Override
+    public void addListener(final ServerChannelListener listener) {
 		if (listener == null) throw new IllegalArgumentException("null listener");
 		synchronized (this.listeners) {
 			this.listeners.add(listener);
@@ -177,7 +178,8 @@ public class NIOServerChannel implements ServerChannel {
 	 * 
 	 * @param listener listener to remove
 	 */
-	public void removeListener(final ServerChannelListener listener) {
+	@Override
+    public void removeListener(final ServerChannelListener listener) {
 		if (listener == null) throw new IllegalArgumentException("null listener");
 		synchronized (this.listeners) {
 			this.listeners.remove(listener);
@@ -207,7 +209,8 @@ public class NIOServerChannel implements ServerChannel {
 	 * @return true if running
 	 * @see org.dicr.radius.channel.ServerChannel#isRunning()
 	 */
-	public boolean isRunning() {
+	@Override
+    public boolean isRunning() {
 		synchronized (this) {
 			return this.thread != null && this.thread.isAlive();
 		}
@@ -218,7 +221,8 @@ public class NIOServerChannel implements ServerChannel {
 	 * 
 	 * @see org.dicr.radius.channel.ServerChannel#startChannel()
 	 */
-	public void startChannel() {
+	@Override
+    public void startChannel() {
 		synchronized (this) {
 			if (this.isRunning()) NIOServerChannel.log.debug("server channel already running");
 			else {
@@ -233,7 +237,8 @@ public class NIOServerChannel implements ServerChannel {
 	 * 
 	 * @see org.dicr.radius.channel.ServerChannel#stopChannel()
 	 */
-	public synchronized void stopChannel() {
+	@Override
+    public synchronized void stopChannel() {
 		synchronized (this) {
 			if (!this.isRunning()) NIOServerChannel.log.debug("server channel is already stopped");
 			else {

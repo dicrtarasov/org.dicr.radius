@@ -85,7 +85,8 @@ public class DefaultRadiusClient implements RadiusClient {
 	/**
 	 * @see org.dicr.radius.client.RadiusClient#authenticate(java.lang.String, java.lang.String)
 	 */
-	public AttributesList authenticate(final String user, final String password) throws AuthenticationException, CodecException, ChannelException {
+	@Override
+    public AttributesList authenticate(final String user, final String password) throws AuthenticationException, CodecException, ChannelException {
 		synchronized (this) {
 			return this.authenticator.authenticate(user, password, this.channel);
 		}

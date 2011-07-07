@@ -197,7 +197,8 @@ public final class FileAuthModule implements PAPAuthModule, CHAPAuthModule, MSCh
 	 * @see PapFile
 	 * @see ShadowUtils
 	 */
-	public final AttributesList authPap(final String userName, final String userPassword, final AttributesList requestAttributes) throws AuthenticationException {
+	@Override
+    public final AttributesList authPap(final String userName, final String userPassword, final AttributesList requestAttributes) throws AuthenticationException {
 		if (userName == null) throw new IllegalArgumentException("null userName");
 		if (userPassword == null) throw new IllegalArgumentException("null userPassword");
 		if (requestAttributes == null) throw new IllegalArgumentException("null requestAttributes");
@@ -264,7 +265,8 @@ public final class FileAuthModule implements PAPAuthModule, CHAPAuthModule, MSCh
 	 *             of Access-Reject response.
 	 * @see PapFile
 	 */
-	public final AttributesList authChap(final String userName, final ChapPassword password, final ChapChallenge challenge, final AttributesList requestAttributes) throws AuthenticationException {
+	@Override
+    public final AttributesList authChap(final String userName, final ChapPassword password, final ChapChallenge challenge, final AttributesList requestAttributes) throws AuthenticationException {
 		if (userName == null) throw new IllegalArgumentException("null userName");
 		if (password == null) throw new IllegalArgumentException("null chapPassword");
 		if (challenge == null) throw new IllegalArgumentException("null challenge");
@@ -317,7 +319,8 @@ public final class FileAuthModule implements PAPAuthModule, CHAPAuthModule, MSCh
 	 *      org.dicr.radius.attribute.ms.MSChapChallenge, org.dicr.radius.attribute.ms.MSChap2Response,
 	 *      org.dicr.radius.attribute.AttributesList)
 	 */
-	public AttributesList authMSChap2(final UserName userName, final MSChapChallenge challenge, final MSChap2Response response, final AttributesList requestAttributes) throws AuthenticationException {
+	@Override
+    public AttributesList authMSChap2(final UserName userName, final MSChapChallenge challenge, final MSChap2Response response, final AttributesList requestAttributes) throws AuthenticationException {
 		if (userName == null) throw new IllegalArgumentException("null userName");
 		if (challenge == null) throw new IllegalArgumentException("null challenge");
 		if (response == null) throw new IllegalArgumentException("null response");
@@ -377,7 +380,8 @@ public final class FileAuthModule implements PAPAuthModule, CHAPAuthModule, MSCh
 	 *      org.dicr.radius.attribute.ms.MSChapChallenge, org.dicr.radius.attribute.ms.MSChapResponse,
 	 *      org.dicr.radius.attribute.AttributesList)
 	 */
-	public AttributesList authMSCHAP(final UserName userName, final MSChapChallenge challenge, final MSChapResponse response, final AttributesList requestAttributes) throws AuthenticationException {
+	@Override
+    public AttributesList authMSCHAP(final UserName userName, final MSChapChallenge challenge, final MSChapResponse response, final AttributesList requestAttributes) throws AuthenticationException {
 		if (userName == null) throw new IllegalArgumentException("null userName");
 		if (challenge == null) throw new IllegalArgumentException("null challenge");
 		if (response == null) throw new IllegalArgumentException("null response");

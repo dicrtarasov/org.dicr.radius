@@ -102,7 +102,8 @@ public class TrackingRequestsQueue implements RequestsQueue {
 	/**
 	 * @see org.dicr.radius.server.RequestsQueue#putRequest(org.dicr.radius.channel.ClientRequest)
 	 */
-	public synchronized void putRequest(final ClientRequest request) {
+	@Override
+    public synchronized void putRequest(final ClientRequest request) {
 		if (request == null) throw new IllegalArgumentException("null request");
 		ClientSession activeSession = null;
 		final long currentTime = System.currentTimeMillis();
@@ -164,7 +165,8 @@ public class TrackingRequestsQueue implements RequestsQueue {
 	/**
 	 * @see org.dicr.radius.server.RequestsQueue#takeRequest()
 	 */
-	public synchronized ClientRequest takeRequest() throws InterruptedException {
+	@Override
+    public synchronized ClientRequest takeRequest() throws InterruptedException {
 		ClientSession activeSession = null;
 		while (activeSession == null) {
 			final long currentTime = System.currentTimeMillis();

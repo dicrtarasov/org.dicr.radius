@@ -41,7 +41,8 @@ public final class LinuxAuthModule implements PAPAuthModule {
 	 * @return empty list
 	 * @throws AuthenticationException if authentication fails.
 	 */
-	public final AttributesList authPap(final String userName, final String userPassword, final AttributesList requestAttributes) throws AuthenticationException {
+	@Override
+    public final AttributesList authPap(final String userName, final String userPassword, final AttributesList requestAttributes) throws AuthenticationException {
 		if (userName == null || userName.length() < 1) throw new IllegalArgumentException("empty user name");
 		if (userPassword == null || userPassword.length() < 1) throw new IllegalArgumentException("empty password");
 		if (requestAttributes == null) throw new IllegalArgumentException("null attributes");

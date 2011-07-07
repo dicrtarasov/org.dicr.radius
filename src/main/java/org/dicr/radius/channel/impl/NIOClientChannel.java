@@ -196,7 +196,8 @@ public class NIOClientChannel implements ClientChannel {
 	 * @throws CodecException if error encoding request packet
 	 * @see org.dicr.radius.channel.ClientChannel#query(org.dicr.radius.packet.RequestPacket)
 	 */
-	@SuppressWarnings("null")
+	@Override
+    @SuppressWarnings("null")
 	public synchronized ResponsePacket query(final RequestPacket request) throws ChannelException, CodecException {
 		if (request == null) throw new IllegalArgumentException("null request");
 		if (this.secret == null) throw new IllegalStateException("shared secret not configured");
